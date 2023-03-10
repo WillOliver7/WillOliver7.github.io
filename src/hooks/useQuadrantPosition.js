@@ -10,10 +10,10 @@ const useQuadrantPosition = (childrenRef, parentRef, change, isDynamic) => {
 	useEffect(() => {
         if (change) {
             const positions = {
-                'topright': {bottom: parent.height, left: parent.width},                
+                'topright': {top: parent.height + children.height, left: parent.width},                
                 'bottomright': {top: parent.height, left: parent.width},
-                'bottomleft': {top: parent.height, right: parent.width},
-                'topleft': {bottom: parent.height, right: parent.width},
+                'bottomleft': {top: parent.height, left: parent.width + children.width},
+                'topleft': {top: parent.height + children.height, right: parent.width + children.width},
             }
             switch (true) {
                 case (children.height < remainingSpace.top  && children.width < remainingSpace.right ) : setPosition(positions['topright']); break;

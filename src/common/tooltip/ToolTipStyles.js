@@ -3,7 +3,6 @@ import styled from 'styled-components'
 export const ToolTipContainer = styled.div`
     margin: 0;
     padding: 0;
-    z-index: 15;
     position: relative;
     width: fit-content;
 `

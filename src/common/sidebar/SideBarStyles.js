@@ -1,40 +1,49 @@
 import styled from 'styled-components'
 
 
-export const SidebarContainer = styled.div`
+export const SidebarDock = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 2.5rem;
-  display: flex;
-  flex-direction: row;
+  width: ${({ isSmallScreen }) => (isSmallScreen ? '100%' : '2.5rem')};
+  height: ${({ isSmallScreen }) => (isSmallScreen ? '2.5rem' : '100%')};
   background-color: #333;
   color: #fff;
-  z-index: 10;
+  z-index: 15;
 `
 
-export const SidebarIcons = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-`
 export const SidebarButtons = styled.div`
+  position: fixed;
   display: flex;
   flex-direction: column;
+  justify-content: ${({ isSmallScreen }) => (isSmallScreen ? 'center' : 'space-between')};
+  align-items: ${({ isSmallScreen }) => isSmallScreen && 'center'};
   background-color: #333;
-  height: 100vh;
+  color: #fff;
   padding: 0 0.6rem;
+  z-index: 20;
+  width: ${({ isSmallScreen }) => (isSmallScreen ? '100vw' : 'fit-content')};
+  height: ${({ isSmallScreen }) => (isSmallScreen ? 'fit-content' : '100vh')};
   transition: all 0.3s ease-in-out;
-  transform: ${({ show }) => (show ? 'translateX(0%)' : 'translateX(-120%)')};
-  opacity: ${({ show }) => (show ? 1 : 0)};
   transform-origin: 0% 80%;
+  ${({ show, isSmallScreen }) =>
+    isSmallScreen ? `
+      transform: ${show ? 'translateY(12%)' : 'translateY(-120%)'};
+    ` : ` 
+      transform: ${show ? 'translateX(20%)' : 'translateX(-120%)'};
+    `
+  }
+  opacity: ${({ show }) => (show ? 1 : 0)};
 `
 
 export const NavButton = styled.button`
+  display: flex;
+  align-items: center;
   height: 3rem;
   width: 12rem;
   font-size: 1rem;
   text-align: left;
+  border-bottom: ${({ isSmallScreen, current }) => (current && isSmallScreen && '2px solid #fff')};
 `
 
 export const Icon = styled.button`

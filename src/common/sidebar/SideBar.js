@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { GlobalContext } from '../../App.js'
-import { SidebarContainer, SidebarButtons, NavButton, Icon, SidebarIcons } from './SideBarStyles'
+import { SidebarDock, SidebarButtons, NavButton, Icon } from './SideBarStyles'
 import { MdHome, MdRule, MdAutorenew, MdOutlineRemoveRedEye, MdOutlineQrCodeScanner, MdOutlineArchive, MdTrendingUp } from 'react-icons/md'
 
 
@@ -26,22 +26,20 @@ function SideBar({setPage}) {
   }
 
   return (
-    <SidebarContainer isSmallScreen={isSmallScreen} onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
-      <SidebarIcons>
-        {buttons.map((button) => 
-            <Icon current={current == button.href ? true : false} onClick={() => handleClick(button.href)}>
-              {button.icon}
-            </Icon>
-        )}
-      </SidebarIcons>
-      {<SidebarButtons show={show}>
+    <>
+      <SidebarDock isSmallScreen={isSmallScreen} onMouseEnter={() => setShow(true)}>
+        {isSmallScreen && <MdOutlineArchive />}
+        {!isSmallScreen && buttons.map((button) => <Icon current={current == button.href ? true : false} onClick={() => handleClick(button.href)}>{button.icon}</Icon>)}
+      </SidebarDock>
+      <SidebarButtons show={show} isSmallScreen={isSmallScreen} onMouseLeave={() => setShow(false)}>
         {buttons.map((button) =>
-          <NavButton  onClick={() => handleClick(button.href)}>
+          <NavButton  onClick={() => handleClick(button.href)} isSmallScreen={isSmallScreen} current={current == button.href ? true : false}>
+            {isSmallScreen && <Icon>{button.icon}</Icon>}
             {button.content}
           </NavButton>
         )}
-      </SidebarButtons>}   
-    </SidebarContainer>
+      </SidebarButtons>
+    </>
   )
 }
 

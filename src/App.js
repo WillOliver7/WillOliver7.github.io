@@ -1,8 +1,8 @@
 import { useEffect, useState, createContext } from "react"
 import { SideBar, StandardPage, Notifier } from './common/index'
 import { Home, Products } from './pages/index'
-import { useMediaQuery } from "./hooks"
-import styles from './App.module.css'
+import { useMediaQuery, useWindowSize } from "./hooks"
+import { AppContainer } from "./AppStyles"
 
 
 export const GlobalContext = createContext();
@@ -13,11 +13,14 @@ export function App() {
   const [sysMsgs, setSysMsgs] = useState([])
 
   const isSmallScreen = useMediaQuery("(max-width: 767px)")
+  const windowSize = useWindowSize()
 
   const ctxValue = {
     sysMsgs,
     setSysMsgs,
-    isSmallScreen
+    isSmallScreen,
+    dvh: windowSize.height * 0.01,
+    dvw: windowSize.width * 0.01,
   }
 
   useEffect(() => {
@@ -29,12 +32,12 @@ export function App() {
   }, [page])
   
   return (
-    <div className={styles.App + " " + (isSmallScreen ? styles.smallscreen : styles.bigscreen)}>
-      <GlobalContext.Provider value={ctxValue}>
-        <SideBar setPage={setPage}/>
+    <GlobalContext.Provider value={ctxValue}>
+      <AppContainer isSmallScreen={isSmallScreen} dvh={ctxValue.dvh} dvw={ctxValue.dvw}>
+        <SideBar setPage={setPage} id="sidebar"/>
         <StandardPage content={content} />
         <Notifier />
-      </GlobalContext.Provider>
-    </div>
+      </AppContainer>
+    </GlobalContext.Provider>
   );
 }

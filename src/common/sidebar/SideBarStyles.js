@@ -16,7 +16,7 @@ export const SidebarButtons = styled.div`
   position: fixed;
   display: flex;
   flex-direction: column;
-  justify-content: ${({ isSmallScreen }) => (isSmallScreen ? 'center' : 'space-between')};
+  justify-content: ${({ isSmallScreen }) => (isSmallScreen && 'center')};
   align-items: ${({ isSmallScreen }) => isSmallScreen && 'center'};
   background-color: #333;
   color: #fff;

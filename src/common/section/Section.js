@@ -3,10 +3,10 @@ import { SectionContainer } from './SectionStyles'
 import { GlobalContext } from '../../App.js'
 
 function Section(props) {
-  const { isSmallScreen } = useContext(GlobalContext)
+  const { isSmallScreen, dvh, dvw } = useContext(GlobalContext)
 
   return (
-    <SectionContainer isSmallScreen={isSmallScreen}>
+    <SectionContainer isSmallScreen={isSmallScreen} dvh={dvh} dvw={dvw}>
       {props.children}
     </SectionContainer>
   )

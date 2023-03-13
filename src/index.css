@@ -6,11 +6,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  height: fit-content;
-  min-height: 100vh;
-  background-color: black;
+  background-color: rgb(172, 70, 70);
 }
-
 
 a {
   color: inherit; 
@@ -23,7 +20,6 @@ button {
   border: none;
   cursor: pointer;
   outline: none;
-  cursor: pointer;  
   -moz-user-select: -moz-none;
   -khtml-user-select: none;
   -webkit-user-select: none;

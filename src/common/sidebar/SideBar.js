@@ -5,7 +5,7 @@ import { MdHome, MdRule, MdAutorenew, MdOutlineRemoveRedEye, MdOutlineQrCodeScan
 
 
 function SideBar({setPage}) {
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(true)
   const [current, setCurrent] = useState('home')
   const { isSmallScreen } = useContext(GlobalContext)
 

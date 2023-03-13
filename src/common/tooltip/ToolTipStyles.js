@@ -3,7 +3,6 @@ import styled from 'styled-components'
 export const ToolTipContainer = styled.div`
     margin: 0;
     padding: 0;
-    position: relative;
     width: fit-content;
 `
 
@@ -12,11 +11,10 @@ export const ToolTipContent = styled.span`
     padding: 0.5rem;
     background-color: #6B6B69;
     color: #fff;
-    max-width: 60vw;
-    word-wrap: break-word;
     z-index: 999;
-    position: ${({ isSmallScreen }) => (isSmallScreen ? 'fixed' : 'absolute')};
-    max-height: ${({ isSmallScreen }) => isSmallScreen && '60vh'};
+    position: fixed;
+    height: ${({ isSmallScreen }) => isSmallScreen && '60vh'};
+    width: ${({ isSmallScreen }) => isSmallScreen && '60vw'};
     top: ${({ isSmallScreen }) => isSmallScreen && '20vh'};
     left: ${({ isSmallScreen }) => isSmallScreen && '20vw'};
     overflow: ${({ isSmallScreen }) => isSmallScreen && 'auto'};

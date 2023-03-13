@@ -5,11 +5,15 @@ export const SidebarDock = styled.div`
   position: -webkit-sticky;
   position: sticky;
   top: 0;
+  display: flex;
+  flex-direction: ${({ isSmallScreen }) => isSmallScreen ? 'row' : 'column'};
+  justify-content: ${({ isSmallScreen }) => isSmallScreen ? 'end' : 'start'};
+  align-items: ${({ isSmallScreen }) => isSmallScreen ? 'center' : 'center'};
   width: ${({ isSmallScreen }) => (isSmallScreen ? '100vw' : '2.5rem')};
   height: ${({ isSmallScreen }) => (isSmallScreen ? '2.5rem' : '100vh')};
   background-color: #333;
   color: #fff;
-  z-index: 15;
+  z-index: 20;
 `
 
 export const SidebarButtons = styled.div`
@@ -22,7 +26,7 @@ export const SidebarButtons = styled.div`
   align-items: ${({ isSmallScreen }) => isSmallScreen && 'center'};
   background-color: #333;
   color: #fff;
-  z-index: 20;
+  z-index: 19;
   width: ${({ isSmallScreen }) => (isSmallScreen ? '100vw' : 'fit-content')};
   height: ${({ isSmallScreen }) => (isSmallScreen ? 'fit-content' : '100vh')};
   transition: all 0.3s ease-in-out;
@@ -52,4 +56,14 @@ export const Icon = styled.button`
   padding: 0 0.6rem;
   font-size: 1rem;
   border-left: ${({ current }) => (current ? '4px solid #fff' : 'none')};
+`
+
+export const BackDrop = styled.span`
+  position: fixed;
+  top: 2.5rem;
+  left: 0;
+  height: 100vh;
+  width: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 18;
 `

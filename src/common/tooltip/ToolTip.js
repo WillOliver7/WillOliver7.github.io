@@ -1,34 +1,36 @@
 import React, { useRef, useState, useContext } from 'react'
 import { GlobalContext } from '../../App.js'
-import styles from './tooltip.module.css'
-import { MdClose } from 'react-icons/md'
-import { useOutsideClick, useQuadrantPosition } from '../../hooks/index'
+import { ToolTipContainer, ToolTipContent, BackDrop } from './ToolTipStyles.js'
+import { useQuadrantPosition } from '../../hooks/index'
+import { useEffect } from 'react'
 
 const ToolTip = (props) => {
     const [show, setShow] = useState(false)
     const { isSmallScreen } = useContext(GlobalContext)
     const wrapperRef = useRef(null)
     const toolTipRef = useRef(null)
-    const position = useQuadrantPosition(toolTipRef, wrapperRef, show)
-
+    const quadrantPosition = useQuadrantPosition(toolTipRef, wrapperRef, show)
+    
     const handleInteraction = () => setShow((prev) => !prev)
-    useOutsideClick(toolTipRef, isSmallScreen ? handleInteraction : undefined, show)
-
-    let tooltipStyle = styles.tooltip
-    tooltipStyle += ' ' + (isSmallScreen ? styles.smallscreen : styles.bigscreen)
 
     return (
-        <div className={styles.wrapper} ref={wrapperRef}>
-            <span onMouseEnter={!isSmallScreen ? handleInteraction : undefined} 
-                onMouseLeave={!isSmallScreen ? handleInteraction : undefined}
-                onClick={isSmallScreen ? handleInteraction : undefined}>
-                {props.children}
-            </span>
-            {show && <span className={tooltipStyle} ref={toolTipRef} style={!isSmallScreen ? position : {}}>
-                {isSmallScreen && <MdClose style={{alignSelf: 'flex-end'}}/>}
+        <ToolTipContainer
+            ref={wrapperRef}
+            onMouseEnter={!isSmallScreen ? handleInteraction : undefined} 
+            onMouseLeave={!isSmallScreen ? handleInteraction : undefined}
+            onClick={isSmallScreen ? handleInteraction : undefined}
+        >
+            {props.children}
+            {show && <ToolTipContent
+                ref={toolTipRef}
+                isSmallScreen={isSmallScreen}
+                style={!isSmallScreen ? quadrantPosition : {}}
+                onClick={(e) => e.stopPropagation()}
+            >
                 {props.text}
-            </span>}
-        </div>
+            </ToolTipContent>}
+            {isSmallScreen && <BackDrop style={{display: show ? 'block' : 'none' }} />}
+        </ToolTipContainer>
     )
 }
 

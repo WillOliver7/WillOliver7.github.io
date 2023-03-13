@@ -1,12 +1,13 @@
 .App {
   text-align: center;
   display: flex;
-  flex-direction: column;
   width: calc(100vw - (100vw - 100%));
 }
-.smallscreen {}
 
-.bigscreen {
-  display: flex;
+.App .smallscreen {
+  flex-direction: column;
+}
+
+.App .bigscreen {
   flex-direction: row;
 }

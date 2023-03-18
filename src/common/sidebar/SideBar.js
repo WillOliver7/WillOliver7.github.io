@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { GlobalContext } from '../../App.js'
-import { SidebarDock, SidebarButtons, NavButton, Icon, BackDrop } from './SideBarStyles'
+import { SideBarContainer, SidebarDock, SidebarButtons, NavButton, Icon, BackDrop } from './SideBarStyles'
 import { MdHome, MdRule, MdAutorenew, MdOutlineRemoveRedEye, MdOutlineQrCodeScanner, MdOutlineArchive, MdTrendingUp } from 'react-icons/md'
 import { RxHamburgerMenu } from 'react-icons/rx'
 
@@ -29,7 +29,7 @@ function SideBar({setPage}) {
   const handleShow = () => setShow((prev) => !prev)
 
   return (
-    <>
+    <SideBarContainer isSmallScreen={isSmallScreen}>
       <SidebarDock isSmallScreen={isSmallScreen} onMouseEnter={() => !isSmallScreen && setShow(true)}>
         {isSmallScreen && <RxHamburgerMenu size={32} style={{zIndex: 21, padding: 8}} onClick={handleShow}/>}
         {!isSmallScreen && pages.map((page) => <Icon current={current == page.href ? true : false} onClick={() => handleClick(page.href)}>{page.icon}</Icon>)}
@@ -43,7 +43,7 @@ function SideBar({setPage}) {
         )}
       </SidebarButtons>
       {isSmallScreen && <BackDrop style={{display: show ? 'block' : 'none' }} onClick={()=> setShow(false)} />}
-    </>
+    </SideBarContainer>
   )
 }
 

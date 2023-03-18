@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useElementSize, useRemainingSpace} from './index'
 
+//used by a {position: fixed} element to be placed in a quadrant like positioning style in relation to its parent
 const useQuadrantPosition = (childrenRef, parentRef, change, isDynamic) => {
     const [position, setPosition] = useState()
     const { top, right, bottom, left } = useRemainingSpace(parentRef, isDynamic)
@@ -10,10 +11,10 @@ const useQuadrantPosition = (childrenRef, parentRef, change, isDynamic) => {
 	useEffect(() => {
         if (change) {
             const positions = {
-                'topright': {top: bottom + parent.height + children.height, left: parent.width},                
-                'bottomright': {top: parent.height, left: parent.width},
-                'bottomleft': {top: parent.height, left: parent.width + children.width},
-                'topleft': {top: parent.height + children.height, left: parent.width + children.width},
+                'topright': {top: top - children.height, left: left + parent.width},                
+                'bottomright': {top: top + parent.height, left: left + parent.width},
+                'bottomleft': {top: top + parent.height, left: left - children.width},
+                'topleft': {top: top + parent.height, left: left - children.width},
             }
             switch (true) {
                 case (children.height < top  && children.width < right ) : setPosition(positions['topright']); break;
@@ -25,9 +26,6 @@ const useQuadrantPosition = (childrenRef, parentRef, change, isDynamic) => {
             }
         }
 	}, [top, right, bottom, left, children, parent])
-
-    console.log(top, right, bottom, left)
-    console.log(position)
 
     return position
 }

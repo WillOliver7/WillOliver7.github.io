@@ -1,19 +1,18 @@
 import React, { useContext } from 'react'
-import styles from './notifier.module.css'
+import { NotifierContainer } from './NotifierStyles'
 import { GlobalContext } from '../../App.js'
 import SystemNotification from './SystemNotification'
 
 function Notifier() {
   const { sysMsgs, isSmallScreen } = useContext(GlobalContext)
+  console.log(sysMsgs)
 
-  let style = styles.notifier
-  style += ' ' +  (isSmallScreen ? styles.smallscreen : styles.bigscreen)
   return (
-    <div className={style}>
-      {sysMsgs.map((notification, index) => 
+    <NotifierContainer isSmallScreen={isSmallScreen}>
+      {sysMsgs.map((notification ) => 
         <SystemNotification message={notification.message} variant={notification.variant} key={index}/>
       )}
-    </div>
+    </NotifierContainer>
   )
 }
 

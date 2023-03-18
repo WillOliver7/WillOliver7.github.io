@@ -1,25 +1,29 @@
 import styled from 'styled-components'
 
+export const SideBarContainer = styled.div`
+  position: fixed;
+  width: ${({ isSmallScreen }) => (isSmallScreen ? '100vw' : '2.5rem')};
+  height: ${({ isSmallScreen }) => (isSmallScreen ? '2.5rem' : '100vh')};
+`
 
 export const SidebarDock = styled.div`
-  position: -webkit-sticky;
-  position: sticky;
+  position: fixed;
   top: 0;
   display: flex;
   flex-direction: ${({ isSmallScreen }) => isSmallScreen ? 'row' : 'column'};
   justify-content: ${({ isSmallScreen }) => isSmallScreen ? 'end' : 'start'};
   align-items: ${({ isSmallScreen }) => isSmallScreen ? 'center' : 'center'};
-  width: ${({ isSmallScreen }) => (isSmallScreen ? '100vw' : '2.5rem')};
-  height: ${({ isSmallScreen }) => (isSmallScreen ? '2.5rem' : '100vh')};
+  width: inherit;
+  height: inherit;
   background-color: #333;
   color: #fff;
   z-index: 20;
 `
 
 export const SidebarButtons = styled.div`
-  position: -webkit-sticky;
-  position: sticky;
+  position: relative;
   top: ${({ isSmallScreen }) => (isSmallScreen && '2.5rem')};
+  left: ${({ isSmallScreen }) => (!isSmallScreen && '2.5rem')};
   display: flex;
   flex-direction: column;
   justify-content: ${({ isSmallScreen }) => (isSmallScreen && 'center')};

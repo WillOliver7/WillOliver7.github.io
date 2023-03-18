@@ -9,7 +9,7 @@ function Notifier() {
 
   return (
     <NotifierContainer isSmallScreen={isSmallScreen}>
-      {sysMsgs.map((notification ) => 
+      {sysMsgs.map((notification, index) => 
         <SystemNotification message={notification.message} variant={notification.variant} key={index}/>
       )}
     </NotifierContainer>

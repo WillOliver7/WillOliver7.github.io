@@ -1,13 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.b3b54867.css",
-    "main.js": "/static/js/main.35d3758e.js",
+    "main.css": "/static/css/main.7ca4e477.css",
+    "main.js": "/static/js/main.11c26ec8.js",
+    "static/media/bike.webp": "/static/media/bike.e5df4abdbb8599ccfcaa.webp",
+    "static/media/morpheus_cat.webp": "/static/media/morpheus_cat.54d17a20e11bd8ba62e5.webp",
+    "static/media/narnya.webp": "/static/media/narnya.cb28d4d2fd644afe8dc9.webp",
+    "static/media/wow_cat.webp": "/static/media/wow_cat.cae3a2ebee1cf49f4c87.webp",
     "index.html": "/index.html",
-    "main.b3b54867.css.map": "/static/css/main.b3b54867.css.map",
-    "main.35d3758e.js.map": "/static/js/main.35d3758e.js.map"
+    "main.7ca4e477.css.map": "/static/css/main.7ca4e477.css.map",
+    "main.11c26ec8.js.map": "/static/js/main.11c26ec8.js.map"
   },
   "entrypoints": [
-    "static/css/main.b3b54867.css",
-    "static/js/main.35d3758e.js"
+    "static/css/main.7ca4e477.css",
+    "static/js/main.11c26ec8.js"
   ]
 }
